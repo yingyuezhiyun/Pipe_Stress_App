@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <RootNamespace>Pipe_Stress_App_V2._5</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Assets\Images\Logo.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\Fonts\iconfont.ttf" />
+    <None Remove="Assets\Images\AllConnected.png" />
+    <None Remove="Assets\Images\DeviceConnected.png" />
+    <None Remove="Assets\Images\Folder.png" />
+    <None Remove="Assets\Images\MatchByTime.png" />
+    <None Remove="Assets\Images\NoneConnected.png" />
+    <None Remove="Assets\Images\RelayConnected.png" />
+    <None Remove="Assets\Images\SingleFile.png" />
+    <None Remove="Assets\Images\Storage.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\Images\Logo.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EPPlus" Version="6.0.7" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.5.0" />
+    <PackageReference Include="MathNet.Numerics" Version="5.0.0" />
+    <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
+    <PackageReference Include="ScottPlot.WPF" Version="4.1.58" />
+    <PackageReference Include="System.IO.Ports" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Logs\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Fonts\iconfont.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\AllConnected.png" />
+    <Resource Include="Assets\Images\DeviceConnected.png" />
+    <Resource Include="Assets\Images\Folder.png" />
+    <Resource Include="Assets\Images\MatchByTime.png" />
+    <Resource Include="Assets\Images\NoneConnected.png" />
+    <Resource Include="Assets\Images\RelayConnected.png" />
+    <Resource Include="Assets\Images\SingleFile.png" />
+    <Resource Include="Assets\Images\Storage.png" />
+  </ItemGroup>
+
+</Project>

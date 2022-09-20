@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32414.318
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pipe_Stress_App_V2.5", "Pipe_Stress_App_V2.5\Pipe_Stress_App_V2.5.csproj", "{8B266D96-BBB3-47D1-9D09-03946A4AA9FB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B266D96-BBB3-47D1-9D09-03946A4AA9FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B266D96-BBB3-47D1-9D09-03946A4AA9FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B266D96-BBB3-47D1-9D09-03946A4AA9FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B266D96-BBB3-47D1-9D09-03946A4AA9FB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2BFBFB3D-E032-4C07-8683-90267C64034F}
+	EndGlobalSection
+EndGlobal
