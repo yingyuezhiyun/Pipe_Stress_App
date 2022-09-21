@@ -11,21 +11,21 @@ namespace Pipe_Stress_App_V2._5.Extensions
     public class PickupFolderDialog
     {
         /// <summary>
-        /// 初期フォルダの指定
-        /// SelectedPath がセットされていない(or設定がおかしい)等の場合に利用される
+        /// 指定初始文件夹
+        /// SelectedPath 未设置（or设定异常）等情况下使用
         /// </summary>
         public string InitialFolder { get; set; }
         /// <summary>
-        /// set = 前回設定していたパスの指定
-        /// get = ダイアログで選択したパス(Cancel終了の場合は設定されない)
+        /// set = 指定上次设置的路径
+        /// get = 对话框中选择的路径（如果取消激活，则不设置）
         /// </summary>
         public string SelectedPath { get; set; }
         /// <summary>
-        /// ダイアログのタイトル
+        /// 对话框标题
         /// </summary>
         public string Title { get; set; }
         /// <summary>
-        /// プレースフォルダの追加
+        /// 添加文件夹路径
         /// </summary>
         /// <param name="value"></param>
         public void AddPlace(string value)
@@ -39,11 +39,11 @@ namespace Pipe_Stress_App_V2._5.Extensions
         private List<string> m_placeList;
 
         /// <summary>
-        ///	ダイアログの表示
+        ///	显示对话框
         /// </summary>
         /// <returns>
-        /// true:どこかを選択
-        /// false:キャンセルか何らかの理由でダイアログが開けなかった
+        /// true:选择某个位置
+        /// false:取消或由于某种原因无法打开对话框
         /// </returns>
         public bool ShowDialog()
         {
@@ -56,7 +56,7 @@ namespace Pipe_Stress_App_V2._5.Extensions
         }
         public bool ShowDialog(IntPtr ownerWindow)
         {
-            //	オーナーウィンドウを問題のないやつに切り替え
+            //	将窗口切换为无
             ownerWindow = GetSafeOwnerWindow(ownerWindow);
 
             var dlg = new CoclassFileOpenDialog() as IFileOpenDialog;
@@ -64,7 +64,7 @@ namespace Pipe_Stress_App_V2._5.Extensions
             {
                 dlg.SetOptions(FOS.PICKFOLDERS | FOS.FORCEFILESYSTEM);
                 bool setFolder = false;
-                //	既存フォルダを指定する
+                //	指定现有文件夹
                 if (!string.IsNullOrWhiteSpace(SelectedPath))
                 {
                     IShellItem item;
@@ -74,7 +74,7 @@ namespace Pipe_Stress_App_V2._5.Extensions
                         setFolder = true;
                     }
                 }
-                //	初期フォルダを指定できるようにしておく
+                //	允许指定初始文件夹
                 if (!setFolder && !string.IsNullOrWhiteSpace(InitialFolder))
                 {
                     IShellItem item;
@@ -83,12 +83,12 @@ namespace Pipe_Stress_App_V2._5.Extensions
                         dlg.SetFolder(item);
                     }
                 }
-                //	タイトルを設定
+                //	设置标题
                 if (!string.IsNullOrWhiteSpace(Title))
                 {
                     dlg.SetTitle(Title);
                 }
-                //	プレースメントフォルダを追加
+                //	添加选定文件夹
                 if (m_placeList != null)
                 {
                     foreach (var folder in m_placeList)
@@ -113,7 +113,7 @@ namespace Pipe_Stress_App_V2._5.Extensions
             }
             catch (COMException exp)
             {
-                MessageBox.Show(exp.Message, "エラー", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show(exp.Message, "错误", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             finally
             {
@@ -123,31 +123,31 @@ namespace Pipe_Stress_App_V2._5.Extensions
         }
         #region implements native methods
         /// <summary>
-        /// Win32レベルのオーナーウィンドウの設定(確実にモーダル処理を行うための措置。
-        /// デバッグ実行していて nullptr の場合おかしくなることがあるので要注意
+        /// 设置Win32窗口(确保进行模态处理的措施。)
+        /// 注意，在执行调试时，nullptr可能会出现异常
         /// </summary>
         /// <param name="hwndOwner"></param>
         /// <returns></returns>
         private static IntPtr GetSafeOwnerWindow(IntPtr hwndOwner)
         {
-            //	無効なウィンドウを参照している場合の排除
+            //	排除无效窗口
             if (hwndOwner != IntPtr.Zero && !NativeMethods.IsWindow(hwndOwner))
             {
                 hwndOwner = IntPtr.Zero;
             }
-            //	オーナーウィンドウの基本を探す
+            //	查找窗口的基本信息
             if (hwndOwner == IntPtr.Zero)
             {
                 hwndOwner = NativeMethods.GetForegroundWindow();
             }
-            //	トップレベルウィンドウを探す
+            //	查找顶层窗口
             IntPtr hwndParent = hwndOwner;
             while (hwndParent != IntPtr.Zero)
             {
                 hwndOwner = hwndParent;
                 hwndParent = NativeMethods.GetParent(hwndOwner);
             }
-            //	トップレベルウィンドウに所属する現在アクティブなポップアップ(自分も含む)を取得
+            //	获取属于顶层窗口的当前活动弹出窗口（包括其自身）
             if (hwndOwner != IntPtr.Zero)
             {
                 hwndOwner = NativeMethods.GetLastActivePopup(hwndOwner);
@@ -155,7 +155,7 @@ namespace Pipe_Stress_App_V2._5.Extensions
             return hwndOwner;
         }
         /// <summary>
-        /// APIラッパー
+        /// API包装
         /// </summary>
         private static class NativeMethods
         {
@@ -178,7 +178,7 @@ namespace Pipe_Stress_App_V2._5.Extensions
             internal static bool FAILED(int result) => result < 0;
         }
         /// <summary>
-        /// 簡易実装版ファイルダイアログインターフェース
+        /// 简易安装版文件对话框接口
         /// </summary>
         [ComImport]
         [Guid("DC1C5A9C-E88A-4dde-A5A1-60F82A20AEF7")]
