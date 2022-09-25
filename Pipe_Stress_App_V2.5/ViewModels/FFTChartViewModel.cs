@@ -210,7 +210,7 @@ namespace Pipe_Stress_App_V2._5.ViewModels
             scottplot.Plot.AddLollipop(validData.Select(a => a.Magnitude).ToArray(),
                  validData.Select(a => a.Frequency).ToArray());
 
-            if (tooltipIsVisible)
+            if (tooltipIsVisible && validData.Count>1)
             {
                 ///添加标签
                 ///零点
