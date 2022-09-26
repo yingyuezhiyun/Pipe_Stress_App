@@ -415,6 +415,7 @@ namespace Pipe_Stress_App_V2._5.ViewModels
                     }
                 }
             }
+            RenderGraph();
         }
 
         #region 定时刷新
